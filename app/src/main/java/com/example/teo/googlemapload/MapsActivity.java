@@ -1,10 +1,13 @@
 package com.example.teo.googlemapload;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -15,7 +18,10 @@ import com.google.android.gms.maps.model.PointOfInterest;
 
 public class MapsActivity extends FragmentActivity implements
         OnMapReadyCallback,
-        GoogleMap.OnPoiClickListener, {
+        GoogleMap.OnPoiClickListener,
+        GoogleApiClient.OnConnectionFailedListener
+
+{
 
     private GoogleMap mMap;
 
@@ -50,5 +56,10 @@ public class MapsActivity extends FragmentActivity implements
                         "\nLatitude:" + poi.latLng.latitude +
                         " Longitude:" + poi.latLng.longitude,
                 Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }
