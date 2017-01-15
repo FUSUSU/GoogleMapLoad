@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -23,11 +24,16 @@ public class MapsActivity extends FragmentActivity implements
         GoogleMap.OnPoiClickListener,
         GoogleApiClient.OnConnectionFailedListener,
         GoogleApiClient.ConnectionCallbacks,
-        GoogleMap.OnMarkerDragListener
+        GoogleMap.OnMarkerDragListener,
+        GoogleMap.OnMapLongClickListener,
+        View.OnClickListener
 
 {
-
+    //Our Map
+    //Bản đồ của chúng tôi
     private GoogleMap mMap;
+
+    //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +95,16 @@ public class MapsActivity extends FragmentActivity implements
 
     @Override
     public void onMarkerDragEnd(Marker marker) {
+
+    }
+
+    @Override
+    public void onMapLongClick(LatLng latLng) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 }
