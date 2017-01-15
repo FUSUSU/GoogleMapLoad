@@ -84,10 +84,18 @@ public class MapsActivity extends FragmentActivity implements
 
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        // Add a marker in CauRong and move the camera
+        // Thêm một đánh dấu tại Cầu Rồng và thêm di chuyển camera
+        LatLng caurong = new LatLng(16.061145, 108.227482);
+        mMap.addMarker(new MarkerOptions().position(caurong).title("Cầu Rống"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(caurong));
+
+        //Setting onMarkerDragListener to track the marker drag
+        //Cài đặt onMarkerDragListener
+        mMap.setOnMarkerDragListener(this);
+        //Adding a long click listener to the map
+        //Thêm một độ dài click lắng nghe từ map
+        mMap.setOnMapLongClickListener(this);
     }
 
     @Override
