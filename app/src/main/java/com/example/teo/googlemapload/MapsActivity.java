@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.google.android.gms.ads.formats.NativeAd;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -56,6 +57,23 @@ public class MapsActivity extends FragmentActivity implements
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        //Initializing googleapi client
+        //Khởi tạo khách hàng googleapi
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this) //Bắt sự kiện
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+
+        //Initializing views and adding onclick listeners.
+        //Khởi tạo views và thêm bộ lắng nghe click
+        buttonSave = (ImageButton) findViewById(R.id.buttonSave);
+        buttonCurrent = (ImageButton) findViewById(R.id.buttonCurrent);
+        buttonView = (ImageButton) findViewById(R.id.buttonView);
+        buttonSave.setOnClickListener(this);
+        buttonCurrent.setOnClickListener(this);
+        buttonView.setOnClickListener(this);
     }
 
     
