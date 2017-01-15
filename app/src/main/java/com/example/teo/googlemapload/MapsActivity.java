@@ -14,6 +14,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PointOfInterest;
 
@@ -21,7 +22,8 @@ public class MapsActivity extends FragmentActivity implements
         OnMapReadyCallback,
         GoogleMap.OnPoiClickListener,
         GoogleApiClient.OnConnectionFailedListener,
-        GoogleApiClient.ConnectionCallbacks
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleMap.OnMarkerDragListener
 
 {
 
@@ -72,6 +74,21 @@ public class MapsActivity extends FragmentActivity implements
 
     @Override
     public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onMarkerDragStart(Marker marker) {
+
+    }
+
+    @Override
+    public void onMarkerDrag(Marker marker) {
+
+    }
+
+    @Override
+    public void onMarkerDragEnd(Marker marker) {
 
     }
 }
