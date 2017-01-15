@@ -1,7 +1,10 @@
 package com.example.teo.googlemapload;
 
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
@@ -76,7 +79,6 @@ public class MapsActivity extends FragmentActivity implements
         buttonView.setOnClickListener(this);
     }
 
-    
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -161,5 +163,62 @@ public class MapsActivity extends FragmentActivity implements
     protected void onStop() {
         googleApiClient.disconnect();
         super.onStop();
+    }
+
+    //Getting current location
+    //Bắt vị trí hiện tại
+    private void getCurrentLocation() {
+        //Creating a location object
+        // Tạo mới một đối tượng vị trí
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        Location location = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+        if (location != null){
+            //Getting longitude and latitude
+            //Lấy kinh độ và vĩ độ
+            longitude = location.getLongitude();
+            latitude = location.getLatitude();
+
+            //moving the map to location
+            //di chuyển bản đồ đến vị trí
+        }
+    }
+
+    //Function to move the map
+    //Chức năng di chuyển bản đồ
+    private void moveMap(){
+        //String to display current latitude and
+        //String hiển thị vĩ độ và kinh độ hiện tại
+        String msg = latitude+","+longitude;
+
+        //Creating a LatLng Object to store Coordinates
+        //Tạo một đối tượng LatLng để lưu tạo độ
+        LatLng latLng = new LatLng(latitude, longitude);
+
+        //Adding marker to map
+        //Thêm đánh dấu bản đồ
+        mMap.addMarker(new MarkerOptions()
+            .position(latLng) //Setting position //vị trí đặt
+            .draggable(true) //Making the marker draggable //Làm đánh dấu kéo
+            .title("Current Location")); //Adding a title //Thêm tiêu đề.
+
+        //Moving the camera
+        //Di chuyển camera
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+
+        //Animating the camera
+        //Hoạt ảnh máy ảnh
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+
+        //Displaying current coordinates in toast
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 }
