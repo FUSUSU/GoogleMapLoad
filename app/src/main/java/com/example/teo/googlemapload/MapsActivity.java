@@ -6,8 +6,10 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.formats.NativeAd;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -33,7 +35,18 @@ public class MapsActivity extends FragmentActivity implements
     //Bản đồ của chúng tôi
     private GoogleMap mMap;
 
-    //
+    //To store longitude and latitude from map.
+    //Để lưu kinh độ và vĩ độ từ bản đồ.
+    private double longitude;
+    private double latitude;
+
+    //Buttons
+    private ImageButton buttonSave; //Lưu
+    private ImageButton buttonCurrent; // tạo độ hiện tại
+    private ImageButton buttonView; //Xem tạo độ
+
+    //Google ApiClient
+    private GoogleApiClient googleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
