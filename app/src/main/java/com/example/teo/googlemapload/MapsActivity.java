@@ -114,9 +114,10 @@ public class MapsActivity extends FragmentActivity implements
 
     }
 
+    //Call the getCurrentLocation()
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-
+        getCurrentLocation();
     }
 
     @Override
