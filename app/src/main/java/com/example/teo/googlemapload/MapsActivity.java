@@ -140,9 +140,18 @@ public class MapsActivity extends FragmentActivity implements
 
     }
 
+    //click lâu để thay đổi vị trí đánh dấu.
     @Override
     public void onMapLongClick(LatLng latLng) {
+        //Clearing all the markers
+        //Xóa tất cả các đánh dấu.
+        mMap.clear();
 
+        //Adding a new marker to the current pressed position we are also making the draggable true
+        //Thêm một đánh dấu mới cho vị trí ép lại hiện tại chúng ta cũng làm kéo đúng
+        mMap.addMarker(new MarkerOptions()
+                .position(latLng)
+                .draggable(true));
     }
 
     @Override
