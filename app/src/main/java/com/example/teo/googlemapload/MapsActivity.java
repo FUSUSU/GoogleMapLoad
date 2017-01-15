@@ -137,7 +137,14 @@ public class MapsActivity extends FragmentActivity implements
 
     @Override
     public void onMarkerDragEnd(Marker marker) {
+        //Getting the coordinates
+        //Lấy tọa độ
+        latitude = marker.getPosition().latitude;
+        longitude = marker.getPosition().longitude;
 
+        //Moving the map.
+        //Di chuyển bản đồ.
+        moveMap();
     }
 
     //click lâu để thay đổi vị trí đánh dấu.
