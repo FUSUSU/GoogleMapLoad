@@ -138,4 +138,20 @@ public class MapsActivity extends FragmentActivity implements
     public void onClick(View v) {
 
     }
+
+    //Connect to our Google Api Client.
+    //Kết nối GoogleApiClient.
+    @Override
+    protected void onStart() {
+        googleApiClient.connect();
+        super.onStart();
+    }
+
+    //Disconnect to our Google Api Client.
+    //Ngắt kết nối GoogleApiClient.
+    @Override
+    protected void onStop() {
+        googleApiClient.disconnect();
+        super.onStop();
+    }
 }
